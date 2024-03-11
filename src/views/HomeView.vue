@@ -60,6 +60,7 @@ const items = [
   gap: 50px;
   max-width: 850px;
   padding: 15px;
+  color: #333;
 }
 
 .calc__wrapper {
