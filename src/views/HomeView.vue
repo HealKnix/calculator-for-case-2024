@@ -54,11 +54,12 @@ const items = [
 
 <style scoped>
 .wrapper {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 50px;
-  max-width: 850px;
+  max-width: 950px;
   padding: 15px;
   color: #333;
 }
@@ -71,7 +72,7 @@ const items = [
 }
 
 .calc__result {
-  max-width: 400px;
+  max-width: max-contentt;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -90,5 +91,15 @@ const items = [
 .calc__result_result {
   font-size: 36px;
   font-weight: bold;
+}
+
+@media (width < 865px) {
+  .wrapper {
+    justify-content: center;
+  }
+  .calc__wrapper {
+    width: 100%;
+    max-width: 450px;
+  }
 }
 </style>
