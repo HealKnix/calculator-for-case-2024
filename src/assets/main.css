@@ -1,0 +1,13 @@
+@import url('fonts/fonts.css');
+
+:root {
+  --accent-color-1: #3d68ed;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Montserrat;
+  color: #333;
+}
