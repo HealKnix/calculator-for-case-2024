@@ -6,6 +6,7 @@
 
 <style scoped>
 span {
+  text-align: center;
   font-size: 40px;
   font-weight: 500;
   color: #fff;
