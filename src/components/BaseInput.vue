@@ -7,12 +7,13 @@ import { ref } from 'vue';
     <input
       :type="type"
       :id="`input_${title}`"
-      placeholder="Введите..."
       step="0.1"
       min="0"
       v-model="inputValue"
+      :class="{ required: req }"
       @input="$emit('update:modelValue', inputValue)"
     />
+    <span v-if="req" class="required">Обязательный ввод</span>
   </label>
 </template>
 
@@ -29,6 +30,11 @@ const props = defineProps({
     required: false,
     default: 'text',
     type: String,
+  },
+  req: {
+    required: false,
+    default: false,
+    type: Boolean,
   },
 });
 
@@ -63,5 +69,13 @@ const inputValue = ref('');
 
 .input__wrapper > input::placeholder {
   color: #6161615f;
+}
+
+.input__wrapper > input.required {
+  box-shadow: 0 0 0 2px #ff647c;
+}
+
+span.required {
+  color: #ff647c;
 }
 </style>

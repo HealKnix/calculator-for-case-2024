@@ -9,11 +9,26 @@
     >
       <span class="calc__result_title total_text">{{ total.title }}</span>
       <span
+        v-if="total.value"
         class="calc__result_value total_text"
-        :class="{ highlight: total.highlight }"
+        :class="[
+          { 'highlight-green': total.highlight && total.value > 0 },
+          { 'highlight-red': total.highlight && total.value < 0 },
+        ]"
       >
-        {{ formatNumber(total.value) }}
+        {{ formatNumber(Math.floor(total.value)) }}
         <span>₽</span>
+      </span>
+
+      <span
+        v-else
+        class="calc__result_value total_text hidden"
+        :class="[
+          { 'highlight-green': total.highlight && total.value > 0 },
+          { 'highlight-red': total.highlight && total.value < 0 },
+        ]"
+      >
+        -
       </span>
     </div>
   </div>
@@ -23,68 +38,130 @@
 
     <div v-for="info in addInfo" :key="info.id" class="calc__result">
       <span class="calc__result_title">{{ info.title }}</span>
-      <span class="calc__result_value">
-        {{ formatNumber(info.value) }}
+      <span v-if="info.value" class="calc__result_value">
+        {{ formatNumber(Math.floor(info.value)) }}
         <span>₽</span>
       </span>
+
+      <span v-else class="calc__result_value hidden"> - </span>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref, watch } from 'vue';
 import formatNumber from '@/helpers/formatNumber';
+import { useResultsStore } from '@/stores/useResultsStore';
 
-const totals = [
+const results = useResultsStore();
+
+const totals = ref([
   {
     id: 0,
     title: 'Общие затраты',
-    value: 63049120000,
+    value: null,
   },
   {
     id: 1,
     title: 'Общая прибыль',
-    value: 265993750000,
+    value: null,
   },
   {
     id: 2,
     title: 'Чистая прибыль',
-    value: 202944630000,
+    value: null,
     highlight: true,
   },
-];
+]);
 
-const addInfo = [
+const addInfo = ref([
   {
     id: 0,
     title: 'Затраты на кустовые площадки',
-    value: 375000000,
+    value: null,
   },
   {
     id: 1,
     title: 'Затраты на новые скважины',
-    value: 4800000000,
+    value: null,
   },
   {
     id: 2,
     title: 'Стоимость ликвидации скважин',
-    value: 480000000,
+    value: null,
   },
   {
     id: 3,
     title: 'Убытки от КРС всех старых скважин',
-    value: 52434120000,
+    value: null,
   },
   {
     id: 4,
     title: 'Затраты на дороги за 10 лет (строительство + обслуживание)',
-    value: 4650000000,
+    value: null,
   },
   {
     id: 5,
     title: 'Затраты на ЛЭП',
-    value: 310000000,
+    value: null,
   },
-];
+]);
+
+const updateValues = () => {
+  totals.value = [
+    {
+      id: 0,
+      title: 'Общие затраты',
+      value: results.total.totalCosts,
+    },
+    {
+      id: 1,
+      title: 'Общая прибыль',
+      value: results.total.totalProfit,
+    },
+    {
+      id: 2,
+      title: 'Чистая прибыль',
+      value: results.total.netIncome,
+      highlight: true,
+    },
+  ];
+
+  addInfo.value = [
+    {
+      id: 0,
+      title: 'Затраты на кустовые площадки',
+      value: results.addInfo.costsOfWellPads,
+    },
+    {
+      id: 1,
+      title: 'Затраты на новые скважины',
+      value: results.addInfo.costsOfNewWells,
+    },
+    {
+      id: 2,
+      title: 'Стоимость ликвидации скважин',
+      value: results.addInfo.costOfWellAbandonment,
+    },
+    {
+      id: 3,
+      title: 'Убытки от КРС всех старых скважин',
+      value: results.addInfo.lossesFromKRSofAllOldWells,
+    },
+    {
+      id: 4,
+      title: 'Затраты на дороги за 10 лет (строительство + обслуживание)',
+      value: results.addInfo.roadCostsForTenYears,
+    },
+    {
+      id: 5,
+      title: 'Затраты на ЛЭП',
+      value: results.addInfo.transmissionLineCosts,
+    },
+  ];
+};
+
+watch(results, updateValues);
 </script>
 
 <style scoped>
@@ -111,8 +188,11 @@ const addInfo = [
   border-bottom: 4px solid rgba(33, 33, 33, 0.25);
 }
 
-.calc__result:has(.highlight):hover {
-  border-bottom: 4px solid #58cd2f;
+.calc__result:has(.highlight-green):hover {
+  border-bottom: 4px solid #00c48c;
+}
+.calc__result:has(.highlight-red):hover {
+  border-bottom: 4px solid #ff647c;
 }
 
 .calc__result:not(:first-child) {
@@ -141,13 +221,30 @@ const addInfo = [
   font-weight: 600;
 }
 
+.calc__result_value:not(.hidden) {
+  animation: opac 0.5s ease-in-out;
+}
+
+@keyframes opac {
+  from {
+    margin-top: -25px;
+    opacity: 0;
+  }
+  to {
+    margin-top: 0;
+    opacity: 1;
+  }
+}
 .calc__result_value.total_text {
   font-size: 36px;
   font-weight: 600;
 }
 
-.calc__result_value.highlight {
-  color: #58cd2f;
+.calc__result_value.highlight-green {
+  color: #00c48c;
+}
+.calc__result_value.highlight-red {
+  color: #ff647c;
 }
 
 @media (width < 865px) {
@@ -178,3 +275,4 @@ const addInfo = [
   }
 }
 </style>
+@/stores/useResultsStore
