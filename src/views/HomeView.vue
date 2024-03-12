@@ -10,12 +10,18 @@
     <div class="calc__results">
       <div class="calc__result">
         <span class="calc__result_title">Затраты на скважину</span>
-        <span class="calc__result_result">347000000 <span>₽</span></span>
+        <span class="calc__result_result">
+          {{ formatNumber(347000000) }}
+          <span>₽</span>
+        </span>
       </div>
 
       <div class="calc__result">
         <span class="calc__result_title">Прибыль от скважины</span>
-        <span class="calc__result_result">2344922195 <span>₽</span></span>
+        <span class="calc__result_result">
+          {{ formatNumber(2344922195) }}
+          <span>₽</span>
+        </span>
       </div>
 
       <div class="calc__result">
@@ -31,6 +37,7 @@ import BaseInput from '@/components/BaseInput.vue';
 import BaseButton from '@/components/BaseButton.vue';
 import BaseRadioForm from '@/components/BaseRadioForm.vue';
 import { ref } from 'vue';
+import formatNumber from '@/helpers/formatNumber';
 
 const type = ref(0);
 
