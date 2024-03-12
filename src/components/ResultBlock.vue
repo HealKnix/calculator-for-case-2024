@@ -1,34 +1,32 @@
 <template>
-  <div class="calc__results__wrapper">
-    <div class="calc__results">
-      <span class="calc__results_title"> Итоги </span>
+  <div class="calc__results">
+    <span class="calc__results_title"> Итоги </span>
 
-      <div
-        v-for="total in totals"
-        :key="total.id"
-        class="calc__result total_text"
+    <div
+      v-for="total in totals"
+      :key="total.id"
+      class="calc__result total_text"
+    >
+      <span class="calc__result_title total_text">{{ total.title }}</span>
+      <span
+        class="calc__result_value total_text"
+        :class="{ highlight: total.highlight }"
       >
-        <span class="calc__result_title total_text">{{ total.title }}</span>
-        <span
-          class="calc__result_value total_text"
-          :class="{ highlight: total.highlight }"
-        >
-          {{ formatNumber(total.value) }}
-          <span>₽</span>
-        </span>
-      </div>
+        {{ formatNumber(total.value) }}
+        <span>₽</span>
+      </span>
     </div>
+  </div>
 
-    <div class="calc__results">
-      <span class="calc__results_title">Дополнительные сведения</span>
+  <div class="calc__results">
+    <span class="calc__results_title">Дополнительные сведения</span>
 
-      <div v-for="info in addInfo" :key="info.id" class="calc__result">
-        <span class="calc__result_title">{{ info.title }}</span>
-        <span class="calc__result_value">
-          {{ formatNumber(info.value) }}
-          <span>₽</span>
-        </span>
-      </div>
+    <div v-for="info in addInfo" :key="info.id" class="calc__result">
+      <span class="calc__result_title">{{ info.title }}</span>
+      <span class="calc__result_value">
+        {{ formatNumber(info.value) }}
+        <span>₽</span>
+      </span>
     </div>
   </div>
 </template>
@@ -90,15 +88,6 @@ const addInfo = [
 </script>
 
 <style scoped>
-.calc__results__wrapper {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 1000px;
-  gap: 35px;
-}
-
 .calc__results {
   width: 100%;
   max-width: 450px;
