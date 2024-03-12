@@ -111,7 +111,13 @@ const addInfo = [
   gap: 10px;
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(33, 33, 33, 0.25);
+  -o-border-bottom: 1px solid rgba(33, 33, 33, 0.25);
+  -moz-border-bottom: 1px solid rgba(33, 33, 33, 0.25);
+  -webkit-border-bottom: 1px solid rgba(33, 33, 33, 0.25);
   transition: 0.15s ease-in-out;
+  -o-transition: 0.15s ease-in-out;
+  -moz-transition: 0.15s ease-in-out;
+  -webkit-transition: 0.15s ease-in-out;
 }
 
 .calc__result.total_text {
@@ -120,10 +126,16 @@ const addInfo = [
 
 .calc__result:hover {
   border-bottom: 4px solid rgba(33, 33, 33, 0.25);
+  -o-border-bottom: 4px solid rgba(33, 33, 33, 0.25);
+  -moz-border-bottom: 4px solid rgba(33, 33, 33, 0.25);
+  -webkit-border-bottom: 4px solid rgba(33, 33, 33, 0.25);
 }
 
 .calc__result:has(.highlight):hover {
   border-bottom: 4px solid #58cd2f;
+  -o-border-bottom: 4px solid #58cd2f;
+  -moz-border-bottom: 4px solid #58cd2f;
+  -webkit-border-bottom: 4px solid #58cd2f;
 }
 
 .calc__result:not(:first-child) {
