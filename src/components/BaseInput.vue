@@ -76,6 +76,19 @@ const inputValue = ref('');
 }
 
 span.required {
+  line-height: 15px;
   color: #ff647c;
+  animation: opac 0.5s ease-in-out;
+}
+
+@keyframes opac {
+  from {
+    margin-top: -5px;
+    opacity: 0;
+  }
+  to {
+    margin-top: 0;
+    opacity: 1;
+  }
 }
 </style>
