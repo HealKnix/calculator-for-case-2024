@@ -18,8 +18,8 @@ import ResultBlock from '@/components/ResultBlock.vue';
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
-  gap: 70px;
+  justify-content: space-evenly;
+  gap: 45px;
   color: #333;
 }
 

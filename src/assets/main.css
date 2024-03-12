@@ -11,6 +11,11 @@
   font-family: Montserrat;
 }
 
+body {
+  max-width: 1500px;
+  margin: auto;
+}
+
 #app {
   display: flex;
   flex-direction: column;
