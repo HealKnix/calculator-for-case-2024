@@ -10,3 +10,10 @@
   box-sizing: border-box;
   font-family: Montserrat;
 }
+
+#app {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  padding: 15px;
+}

@@ -1,3 +1,4 @@
+import { ref } from 'vue';
 <template>
   <label :for="`input_${title}`" class="input__wrapper">
     <span class="input_title">
@@ -9,11 +10,15 @@
       placeholder="Введите..."
       step="0.1"
       min="0"
+      v-model="inputValue"
+      @input="$emit('update:modelValue', inputValue)"
     />
   </label>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
 const props = defineProps({
   title: {
     require: false,
@@ -26,6 +31,8 @@ const props = defineProps({
     type: String,
   },
 });
+
+const inputValue = ref('');
 </script>
 
 <style scoped>
