@@ -8,13 +8,13 @@
     />
     <BaseInput
       type="number"
-      title="Количество кустовых площадок (5 скважин)"
+      title="Количество кустовых площадок (5&nbsp;скважин)"
       v-model="input2"
       :req="input2Req"
     />
     <BaseInput
       type="number"
-      title="Дебит скважины в тыс (м³ / сут)"
+      title="Дебит скважины в тыс (м³&nbsp;/&nbsp;сут)"
       v-model="input3"
       :req="input3Req"
     />

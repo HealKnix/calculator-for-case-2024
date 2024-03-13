@@ -13,7 +13,7 @@ import { ref } from 'vue';
       :class="{ required: req }"
       @input="$emit('update:modelValue', inputValue)"
     />
-    <span v-if="req" class="required">Обязательный ввод</span>
+    <span v-if="req" class="required">{{ requiredText }}</span>
   </label>
 </template>
 
@@ -39,6 +39,7 @@ const props = defineProps({
 });
 
 const inputValue = ref('');
+const requiredText = ref('Обязательный ввод');
 </script>
 
 <style scoped>
