@@ -2,7 +2,7 @@
   <div class="calc__wrapper">
     <BaseInput
       type="number"
-      title="Стоимость 1 тыс м3 газа (₽)"
+      title="Стоимость 1 тыс м³ газа (₽)"
       v-model="input1"
       :req="input1Req"
     />
@@ -14,7 +14,7 @@
     />
     <BaseInput
       type="number"
-      title="Дебит скважины в тыс (м3 / сут)"
+      title="Дебит скважины в тыс (м³ / сут)"
       v-model="input3"
       :req="input3Req"
     />
