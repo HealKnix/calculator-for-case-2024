@@ -189,10 +189,10 @@ watch(results, updateValues);
 }
 
 .calc__result:has(.highlight-green):hover {
-  border-bottom: 4px solid #00c48c;
+  border-bottom: 4px solid #58cd2f;
 }
 .calc__result:has(.highlight-red):hover {
-  border-bottom: 4px solid #ff647c;
+  border-bottom: 4px solid #e24c4c;
 }
 
 .calc__result:not(:first-child) {
@@ -241,10 +241,10 @@ watch(results, updateValues);
 }
 
 .calc__result_value.highlight-green {
-  color: #00c48c;
+  color: #58cd2f;
 }
 .calc__result_value.highlight-red {
-  color: #ff647c;
+  color: #e24c4c;
 }
 
 @media (width < 865px) {
